@@ -42,13 +42,26 @@
     <!-- ##########  PAGE BODY START HERE!!!! ###########-->
     <div class="container">
         <h1>Setting</h1>
-        <div class="toggleonoff">
-                <label class="switch">
-                    <input type="checkbox" name="on/off" onclick="checkStatus(this)">
-                    <span class="slider round"></span>
-                </label>
-                <a id="toggleStatus">OFF</a>
+        <h2><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
+                aria-controls="collapseExample">
+                Please Read
+            </a>
+        </h2>
+        <h2>
+            <div class="collapse" id="collapseExample">
+                You can set brightness at 'Bright' Button
             </div>
+        </h2>
+        <h2>
+            <button type="button" class="btn btn-primary">Bright</button>
+        </h2>
+        <div class="toggleonoff">
+            <label class="switch">
+                <input type="checkbox" name="on/off" onclick="checkStatus(this)">
+                <span class="slider round"></span>
+            </label>
+            <a id="toggleStatus">OFF</a>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->
@@ -59,8 +72,8 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <script src="../assets/js/setting.js"></script>    
-    <script src="../assets/js/global.js"></script>
+        <script src="../assets/js/global.js"></script>
+    <script src="../assets/js/setting.js"></script>
 </body>
 
 </html>
