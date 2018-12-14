@@ -1,16 +1,8 @@
-function updateClock() {
-    var dt = new Date();
-    document.getElementById("datetime").innerHTML = dt.toLocaleTimeString();
-    
-    setTimeout(updateClock, 1000);
-}
-function checkStatus(checkbox){
-    if (checkbox.checked){
-		document.getElementById("toggleStatus").innerHTML = "ON";
-    }else{
-		document.getElementById("toggleStatus").innerHTML = "OFF";
-	}
-}
+var switchOnFlag = 0;
+var light = 0;
+var period = 0;
+
+
 $(document).ready(function () {
     updateClock();
 });
