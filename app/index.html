@@ -39,16 +39,21 @@
 
     <!-- ##########  PAGE BODY START HERE!!!! ###########-->
     <div class="container">
-        <h1>Home</h1>
-
+        <h1 align="center">Home</h1><br>
         <p id="raw_data">Data from Node MCU = </p>
         <p id="get_topic">Topic = </p>
         <p id="light">Light = </p>
         <p id="period">Time period = </p>
-        <p>Date/Time: <span id="datetime"></span></p>
+        <p id="dt">Date/Time: <span id="datetime"></span></p>
         <h1 id="connected_NETPIE"></h1>
     </div>
-
+	<div class="toggleonoff">
+		<label class="switch">
+			<input type="checkbox" name="on/off" onclick="checkStatus(this)">
+			<span class="slider round"></span>
+		</label>
+		<a id="toggleStatus">OFF</a>
+	</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
