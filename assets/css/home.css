@@ -1,8 +1,4 @@
-body{
-   
-}
-
-.container{
+.homeContainer{
 	LINE-HEIGHT:30px;
 }
 
@@ -68,7 +64,7 @@ input:checked + .slider:before {
 
 .toggleonoff{
 	margin: auto;
-	width: 50%;
+	width: 75%%;
 	text-align: center;
 }
 

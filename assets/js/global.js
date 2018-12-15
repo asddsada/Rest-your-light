@@ -9,10 +9,10 @@ function checkStatus(checkbox){
     console.log(sessionStorage.getItem('switchOnFlag'));
     if (sessionStorage.getItem('switchOnFlag') == "true"){
         console.log('on');
-        document.getElementById("toggleStatus").innerHTML = "ON";
+        document.getElementById("toggleStatus").innerHTML = "Light Status : ON";
     }else{
         console.log('off');
-        document.getElementById("toggleStatus").innerHTML = "OFF";
+        document.getElementById("toggleStatus").innerHTML = "Light Status : OFF";
 	}
 }
 
@@ -20,9 +20,9 @@ function updateCheckBox() {
     console.log(sessionStorage.getItem('switchOnFlag'));
     if (sessionStorage.getItem('switchOnFlag') == "true") {
         $('input[type="checkbox"][name*="on/off"]').prop('checked', true);
-        document.getElementById("toggleStatus").innerHTML = "ON";
+        document.getElementById("toggleStatus").innerHTML = "Light Status : ON";
     } else {
         $('input[type="checkbox"][name*="on/off"]').prop('checked', false);
-        document.getElementById("toggleStatus").innerHTML = "OFF";
+        document.getElementById("toggleStatus").innerHTML = "Light Status : OFF";
     }
 }

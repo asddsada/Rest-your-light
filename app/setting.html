@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h"
         crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/home.css">
-
+	<link rel="stylesheet" href="../assets/css/setting.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <title>Rest your light</title>
@@ -41,8 +41,60 @@
 
     <!-- ##########  PAGE BODY START HERE!!!! ###########-->
     <div class="container">
-        <h1>Setting</h1>
-        <h2><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
+		<br>
+		<div>
+			<div class="Top-Left">
+				<h1>Setting</h1>
+			</div>
+			<div class="Top-Right">
+				<div class="toggleonoff">
+					<label class="switch">
+						<input type="checkbox" name="on/off" onclick="checkStatus(this)">
+						<span class="slider round"></span>
+					</label>
+					<br>
+					<a id="toggleStatus">Light Status : OFF</a>
+				</div>
+			</div>
+		</div>
+		<br><br><hr><br>
+		<div class="boxed">
+			<h1>Please Read before use </h1><br>
+			<p>Set auto light low = light will dark when environment is bright.</p>
+			<p>Set auto light high = light will dark when environment is bright.</p>
+			<p>Auto mode = Auto dim light when environment change.</p>
+			<p>Current brightness = current brightness</p>	
+			</p>
+		</div>
+		<div class="toggleZone">
+			<br><br>
+			<div class="row">
+				<div class="col-4">
+					<p>Mode : </p>
+				</div>
+				<div class="col-3">
+					<button type="button" class="btn btn-success btn-block" id="button1" onclick="checkModeStatus(this)">Low</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<p>Turn on auto mode</p>
+				</div>
+				<div class="col-3">
+					<button type="button" class="btn btn-success btn-block" id="button2" onclick="checkAutoStatus(this)">On</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<p>Set current brightness</p>
+				</div>
+				<div class="col-3">
+					<button type="button" class="btn btn-success btn-block" id="button3" onclick="checkBrightnessStatus(this)">Bright</button>
+				</div>
+			</div>	
+		</div>
+		
+    <!--    <h2><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
                 aria-controls="collapseExample">
                 Please Read
             </a>
@@ -55,18 +107,13 @@
         <h2>
             <button type="button" class="btn btn-primary">Bright</button>
         </h2>
-        <p>low light: {set light mode High/Low}
-            bright light: {set light mode High/Low}
-            auto change: {on/off}
-            set current light: {hight/low}
-        </p>
-        <div class="toggleonoff">
-            <label class="switch">
-                <input type="checkbox" name="on/off" onclick="checkStatus(this)">
-                <span class="slider round"></span>
-            </label>
-            <a id="toggleStatus">OFF</a>
-        </div>
+        <p>low light: {set light mode High/Low}<br>
+            bright light: {set light mode High/Low}<br>
+            auto change: {on/off}<br>
+            set current light: {hight/low}<br>
+        </p> -->
+		
+        
     </div>
 
     <!-- Optional JavaScript -->
