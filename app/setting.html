@@ -19,12 +19,12 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-toggleable-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="index.html">
             Rest your light
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
+            aria-expa	nded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -59,21 +59,29 @@
 		</div>
 		<br><br><hr><br>
 		<div class="boxed">
-			<h1>Please Read before use </h1><br>
-			<p>Set auto light low = light will dark when environment is bright.</p>
-			<p>Set auto light high = light will dark when environment is bright.</p>
-			<p>Auto mode = Auto dim light when environment change.</p>
-			<p>Current brightness = current brightness</p>	
+			<h3>Please Read before use </h3><br><br>
+			<p>Set auto light low = light will dim when environment is bright.</p>
+			<p>Set auto light high = light will bright when environment is dark.</p>
+			<p>Auto mode = Turn on off auto dim light when environment change.</p>
+			<p>Current brightness = Set current brightness</p>	
 			</p>
 		</div>
 		<div class="toggleZone">
-			<br><br>
+			<br>
 			<div class="row">
 				<div class="col-4">
 					<p>Mode : </p>
 				</div>
 				<div class="col-3">
-					<button type="button" class="btn btn-success btn-block" id="button1" onclick="checkModeStatus(this)">Low</button>
+					<div class="toggleMode">
+						<label class="switch-sm">
+							<input type="checkbox" name="Mode" onclick="checkModeStatus(this)">
+							<span class="slider-sm"></span>
+						</label>
+					</div>
+				</div>
+				<div class="col-0">
+					<a id="toggleModeStatus">LOW</a>
 				</div>
 			</div>
 			<div class="row">
@@ -81,15 +89,32 @@
 					<p>Turn on auto mode</p>
 				</div>
 				<div class="col-3">
-					<button type="button" class="btn btn-success btn-block" id="button2" onclick="checkAutoStatus(this)">On</button>
+					<div class="toggleAuto">
+						<label class="switch-sm">
+							<input type="checkbox" name="Auto" onclick="checkAutoStatus(this)">
+							<span class="slider-sm"></span>
+						</label>
+					</div>
+				</div>
+				<div class="col-0">
+					<a id="toggleAutoStatus">OFF</a>
 				</div>
 			</div>
+			
 			<div class="row">
 				<div class="col-4">
 					<p>Set current brightness</p>
 				</div>
 				<div class="col-3">
-					<button type="button" class="btn btn-success btn-block" id="button3" onclick="checkBrightnessStatus(this)">Bright</button>
+					<div class="toggleBrightness">
+						<label class="switch-sm">
+							<input type="checkbox" name="Brightness" onclick="checkBrightnessStatus(this)">
+							<span class="slider-sm"></span>
+						</label>
+					</div>
+				</div>
+				<div class="col-0">
+					<a id="toggleBrightnessStatus">DIM</a>
 				</div>
 			</div>	
 		</div>

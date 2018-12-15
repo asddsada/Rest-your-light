@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-toggleble-xl navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
             Rest your light
         </a>
@@ -40,22 +40,43 @@
     </nav>
 
     <!-- ##########  PAGE BODY START HERE!!!! ###########-->
-    <div class="homeContainer">
-        <h1 align="center">Home</h1><br>
-        <p id="raw_data">Data from Node MCU = </p>
-        <p id="get_topic">Topic = </p>
-        <p id="light">Light = </p>
-        <p id="period">Time period = </p>
-        <p id="dt">Date/Time: <span id="datetime"></span></p>
-        <h1 id="connected_NETPIE"></h1>
-        <div class="toggleonoff">
-            <label class="switch">
-                <input type="checkbox" name="on/off" onclick="checkStatus(this)">
-                <span class="slider round"></span>
-            </label>
-			<br>
-            <a id="toggleStatus">Light Status : OFF</a>
-        </div>
+    <div class="container">
+		<br>
+        <div class="Top-Left">
+			<h1>Home</h1>
+		</div>
+		<div class="Top-Right">
+			<h5>Date/Time: <span id="datetime"></span></h5>
+		
+			
+		</div>
+		<br><br><hr><br>
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="card" >
+					<div class="card-body">
+							<h4 class="card-title">Status</h4><br>
+							<p id="raw_data">Data from Node MCU = </p>
+							<p id="get_topic">Topic = </p>
+							<p id="light">Light = </p>
+							<p id="period">Time period = </p>
+							<p id="dt">Date/Time: <span id="datetime"></span></p>
+							<h1 id="connected_NETPIE"></h1>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<br><br><br>
+				<div class="toggleonoff">
+					<label class="switch">
+						<input type="checkbox" name="on/off" onclick="checkStatus(this)">
+						<span class="slider round"></span>
+					</label>
+					<br>
+					<a id="toggleStatus">Light Status : OFF</a>
+				</div>
+			</div>
+		</div>
     </div>
 
     <!-- Optional JavaScript -->

@@ -1,76 +1,75 @@
-var b1 = document.getElementById("button1");
-var b2 = document.getElementById("button2");
-var b3 = document.getElementById("button3");
-
 $(document).ready(function () {
     updateCheckBox();
+	updateModeCheckBox()
+	updateAutoCheckBox()
+	updateBrightnessCheckBox()
 });
 
 function checkModeStatus(checkbox){
-    sessionStorage.setItem('switchOnFlag',checkbox.checked);
-    console.log(sessionStorage.getItem('switchOnFlag'));
-    if (b1.innerHTML == "Low"){
-        console.log('on');
-        b1.innerHTML = "High";
+    sessionStorage.setItem('switchModeOnFlag',checkbox.checked);
+    console.log(sessionStorage.getItem('switchModeOnFlag'));
+    if (sessionStorage.getItem('switchModeOnFlag') == "true"){
+        console.log('high');
+        document.getElementById("toggleModeStatus").innerHTML = "HIGH";
     }else{
-        console.log('off');
-        b1.innerHTML = "Low";
+        console.log('low');
+        document.getElementById("toggleModeStatus").innerHTML = "LOW";
 	}
 }
 
 function updateModeCheckBox() {
-    console.log(sessionStorage.getItem('switchOnFlag'));
-    if (sessionStorage.getItem('switchOnFlag') == "true") {
-        $('input[type="checkbox"][name*="on/off"]').prop('checked', true);
-        b1.innerHTML = "Low";
+    console.log(sessionStorage.getItem('switchModeOnFlag'));
+    if (sessionStorage.getItem('switchModeOnFlag') == "true") {
+        $('input[type="checkbox"][name*="Mode"]').prop('checked', true);
+        document.getElementById("toggleModeStatus").innerHTML = "HIGH";
     } else {
-        $('input[type="checkbox"][name*="on/off"]').prop('checked', false);
-        b1.innerHTML = "High";
+        $('input[type="checkbox"][name*="Mode"]').prop('checked', false);
+        document.getElementById("toggleModeStatus").innerHTML = "LOW";
     }
 }
 
 function checkAutoStatus(checkbox){
-    sessionStorage.setItem('switchOnFlag',checkbox.checked);
-    console.log(sessionStorage.getItem('switchOnFlag'));
-    if (sessionStorage.getItem('switchOnFlag') == "true"){
+    sessionStorage.setItem('switchAutoOnFlag',checkbox.checked);
+    console.log(sessionStorage.getItem('switchAutoOnFlag'));
+    if (sessionStorage.getItem('switchAutoOnFlag') == "true"){
         console.log('on');
-		b2.innerHTML = "Light Status : ON";
+        document.getElementById("toggleAutoStatus").innerHTML = "ON";
     }else{
         console.log('off');
-        b2.innerHTML = "Light Status : OFF";
+        document.getElementById("toggleAutoStatus").innerHTML = "OFF";
 	}
 }
 
 function updateAutoCheckBox() {
-    console.log(sessionStorage.getItem('switchOnFlag'));
-    if (sessionStorage.getItem('switchOnFlag') == "true") {
-        $('input[type="checkbox"][name*="on/off"]').prop('checked', true);
-        b2.innerHTML = "Light Status : ON";
+    console.log(sessionStorage.getItem('switchAutoOnFlag'));
+    if (sessionStorage.getItem('switchAutoOnFlag') == "true") {
+        $('input[type="checkbox"][name*="Auto"]').prop('checked', true);
+        document.getElementById("toggleAutoStatus").innerHTML = "ON";
     } else {
-        $('input[type="checkbox"][name*="on/off"]').prop('checked', false);
-        b2.innerHTML = "Light Status : OFF";
+        $('input[type="checkbox"][name*="Auto"]').prop('checked', false);
+        document.getElementById("toggleAutoStatus").innerHTML = "OFF";
     }
 }
 
 function checkBrightnessStatus(checkbox){
-    sessionStorage.setItem('switchOnFlag',checkbox.checked);
-    console.log(sessionStorage.getItem('switchOnFlag'));
-    if (sessionStorage.getItem('switchOnFlag') == "true"){
+    sessionStorage.setItem('switchBrightnessOnFlag',checkbox.checked);
+    console.log(sessionStorage.getItem('switchBrightnessOnFlag'));
+    if (sessionStorage.getItem('switchBrightnessOnFlag') == "true"){
         console.log('on');
-        b3.innerHTML = "Light Status : ON";
+        document.getElementById("toggleBrightnessStatus").innerHTML = "BRIGHT";
     }else{
         console.log('off');
-        b3.innerHTML = "Light Status : OFF";
+        document.getElementById("toggleBrightnessStatus").innerHTML = "DIM";
 	}
 }
 
 function updateBrightnessCheckBox() {
-    console.log(sessionStorage.getItem('switchOnFlag'));
-    if (sessionStorage.getItem('switchOnFlag') == "true") {
-        $('input[type="checkbox"][name*="on/off"]').prop('checked', true);
-        b3.innerHTML = "Light Status : ON";
+    console.log(sessionStorage.getItem('switchBrightnessOnFlag'));
+    if (sessionStorage.getItem('switchBrightnessOnFlag') == "true") {
+        $('input[type="checkbox"][name*="Brightness"]').prop('checked', true);
+        document.getElementById("toggleBrightnessStatus").innerHTML = "BRIGHT";
     } else {
-        $('input[type="checkbox"][name*="on/off"]').prop('checked', false);
-        b3.innerHTML = "Light Status : OFF";
+        $('input[type="checkbox"][name*="Brightness"]').prop('checked', false);
+        document.getElementById("toggleBrightnessStatus").innerHTML = "DIM";
     }
 }
