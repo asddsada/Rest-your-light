@@ -9,25 +9,23 @@ function checkModeStatus(checkbox){
     sessionStorage.setItem('switchModeOnFlag',checkbox.checked);
     console.log(sessionStorage.getItem('switchModeOnFlag'));
     if (sessionStorage.getItem('switchModeOnFlag') == "true"){
-        console.log('high');
-        document.getElementById("toggleModeStatus").innerHTML = "HIGH";
+        console.log('nightowl');
+        document.getElementById("toggleModeStatus").innerHTML = "NightOWL";
     }else{
-        console.log('low');
-        document.getElementById("toggleModeStatus").innerHTML = "LOW";
+        console.log('earlybird');
+        document.getElementById("toggleModeStatus").innerHTML = "EarlyBIRD";
 	}
 }
-
 function updateModeCheckBox() {
     console.log(sessionStorage.getItem('switchModeOnFlag'));
     if (sessionStorage.getItem('switchModeOnFlag') == "true") {
         $('input[type="checkbox"][name*="Mode"]').prop('checked', true);
-        document.getElementById("toggleModeStatus").innerHTML = "HIGH";
+        document.getElementById("toggleModeStatus").innerHTML = "NightOWL";
     } else {
         $('input[type="checkbox"][name*="Mode"]').prop('checked', false);
-        document.getElementById("toggleModeStatus").innerHTML = "LOW";
+        document.getElementById("toggleModeStatus").innerHTML = "EarlyBIRD";
     }
 }
-
 function checkAutoStatus(checkbox){
     sessionStorage.setItem('switchAutoOnFlag',checkbox.checked);
     console.log(sessionStorage.getItem('switchAutoOnFlag'));
@@ -39,7 +37,6 @@ function checkAutoStatus(checkbox){
         document.getElementById("toggleAutoStatus").innerHTML = "OFF";
 	}
 }
-
 function updateAutoCheckBox() {
     console.log(sessionStorage.getItem('switchAutoOnFlag'));
     if (sessionStorage.getItem('switchAutoOnFlag') == "true") {
@@ -50,7 +47,6 @@ function updateAutoCheckBox() {
         document.getElementById("toggleAutoStatus").innerHTML = "OFF";
     }
 }
-
 function checkBrightnessStatus(checkbox){
     sessionStorage.setItem('switchBrightnessOnFlag',checkbox.checked);
     console.log(sessionStorage.getItem('switchBrightnessOnFlag'));
@@ -62,7 +58,6 @@ function checkBrightnessStatus(checkbox){
         document.getElementById("toggleBrightnessStatus").innerHTML = "DIM";
 	}
 }
-
 function updateBrightnessCheckBox() {
     console.log(sessionStorage.getItem('switchBrightnessOnFlag'));
     if (sessionStorage.getItem('switchBrightnessOnFlag') == "true") {

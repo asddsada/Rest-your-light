@@ -59,12 +59,12 @@
 		</div>
 		<br><br><hr><br>
 		<div class="boxed">
-			<h3>Please Read before use </h3><br><br>
-			<p>Set auto light low = light will dim when environment is bright.</p>
-			<p>Set auto light high = light will bright when environment is dark.</p>
-			<p>Auto mode = Turn on off auto dim light when environment change.</p>
-			<p>Current brightness = Set current brightness</p>	
-			</p>
+			<h3>Description</h3><br><br>
+			<p>EarlyBIRD Mode - Auto bright when outside is bright.</p>
+			<p>NightOWL Mode - Auto bright when outside is dark.</p>
+			<p>Auto Mode - Turn on/off auto brightness.</p>
+			<p>Set current brightness - Select current high or low brightness.</p>	
+			<p>Pick on and off time - Pick period of time to auto brightness.</p>
 		</div>
 		<div class="toggleZone">
 			<br>
@@ -81,7 +81,7 @@
 					</div>
 				</div>
 				<div class="col-0">
-					<a id="toggleModeStatus">LOW</a>
+					<a id="toggleModeStatus">EarlyBIRD</a>
 				</div>
 			</div>
 			<div class="row">
@@ -100,7 +100,6 @@
 					<a id="toggleAutoStatus">OFF</a>
 				</div>
 			</div>
-			
 			<div class="row">
 				<div class="col-4">
 					<p>Set current brightness</p>
@@ -117,28 +116,29 @@
 					<a id="toggleBrightnessStatus">DIM</a>
 				</div>
 			</div>	
-		</div>
-		
-    <!--    <h2><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
-                aria-controls="collapseExample">
-                Please Read
-            </a>
-        </h2>
-        <h2>
-            <div class="collapse" id="collapseExample">
-                You can set brightness at 'Bright' Button
-            </div>
-        </h2>
-        <h2>
-            <button type="button" class="btn btn-primary">Bright</button>
-        </h2>
-        <p>low light: {set light mode High/Low}<br>
-            bright light: {set light mode High/Low}<br>
-            auto change: {on/off}<br>
-            set current light: {hight/low}<br>
-        </p> -->
-		
-        
+			<div class="row">
+				<div class="col-4">
+					<p>Pick on and off time</p>
+				</div>
+				<div class="col-3">
+					<button type="button" class="btn btn-info btn-block" id="starttime">Start Time</button>
+				</div>
+				<div class="col-3">
+					<button type="button" class="btn btn-info btn-block" id="endtime">End Time</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<p></p>
+				</div>
+				<div class="col-3">
+					<span id="starttime" value=""></span>
+				</div>
+				<div class="col-3">
+					<span id="endtime" value=""></span>
+				</div>
+			</div>
+		</div>  
     </div>
 
     <!-- Optional JavaScript -->

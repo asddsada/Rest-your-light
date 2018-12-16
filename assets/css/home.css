@@ -5,6 +5,7 @@ body{
 .container{
 	LINE-HEIGHT:30px;
 }
+
 .card-body{
 	LINE-HEIGHT:12px;
 }
@@ -12,13 +13,11 @@ div.Top-Left{
 	position: absolute;
 	left: 10%;
 }
-div.Top-Right{
-	width:18%;
-	position: absolute;
-	right:0;
+div.col-lg-6#top-right{
+	text-align: right;
 }
 
-#raw_data, #get_topic, #light, #period, #dt{
+#raw_data, #get_topic, #light, #period{
 	margin-left:10%;
 }
 
