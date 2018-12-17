@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+	<link rel="stylesheet" href="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css" integrity="sha384-iVEATXTHe8xvCp/yIvtQCN90RVIZVyTQ/NKPOToIcpNbxxpZYOfKHvTww4+efdcn"
+		crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h"
         crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/home.css">
@@ -68,7 +70,8 @@
 						<p>NightOWL Mode - Auto bright when outside is dark.</p>
 						<p>Auto Mode - Turn on/off auto brightness.</p>
 						<p>Set current brightness - Select current high or low brightness.</p>	
-						<p>Pick on and off time - Pick period of time to auto brightness.</p>
+						<p>Click start and end to select start time and end time of auto mode.</p>
+						<p>If start time same as end time, auto mode always on.</p>
 					</div>
 				</div>
 			</div>
@@ -123,36 +126,40 @@
 						<a id="toggleBrightnessStatus">DIM</a>
 					</div>
 				</div>	
+				
 				<div class="row">
 					<div class="col-4">
 						<p>Pick on and off time</p>
 					</div>
-					<div class="col-3">
-						<button type="button" class="btn btn-info btn-block" id="starttime">Start Time</button>
-					</div>
-					<div class="col-3">
-						<button type="button" class="btn btn-info btn-block" id="endtime">End Time</button>
-					</div>
-				</div>
-				<div class="row">
 					<div class="col-4">
-						<p></p>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<button class="btn btn-primary" type="button" id="starttimebtn">Start</button>
+							</div>
+							<input class="form-control" placeholder="00:00" aria-label="00:00" id="starttime" value="" data-default="00:00" size="5">
+						</div>
 					</div>
-					<div class="col-3">
-						<span id="starttime" value=""></span>
-					</div>
-					<div class="col-3">
-						<span id="endtime" value=""></span>
+					<div class="col-4">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<button class="btn btn-primary" type="button" id="endtimebtn">End</button>
+							</div>
+							<input class="form-control" placeholder="00:00" aria-label="00:00" id="endtime" value="" data-default="00:00" size="5">
+						</div>
 					</div>
 				</div>
 			</div>  
 		</div>
+		<div class="container">
+</div>
     </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
+	<script src="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js" integrity="sha384-7w+mE+ZNPmNQegE9Wo/noaFBle/gIgQ0XQlxHmcEXxQ8vaJ2KSV9Xi6RvL7H7NVw" 
+		crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"

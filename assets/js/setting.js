@@ -68,3 +68,30 @@ function updateBrightnessCheckBox() {
         document.getElementById("toggleBrightnessStatus").innerHTML = "DIM";
     }
 }
+
+
+var startauto = $('#starttime');
+startauto.clockpicker({
+	placement: 'top',
+    align: 'left',
+    donetext: 'Done'
+});
+
+var endauto = $('#endtime');
+endauto.clockpicker({
+	placement: 'top',
+    align: 'left',
+    donetext: 'Done'
+});
+
+// Manual operations
+$('#starttimebtn').click(function(e){
+    // Have to stop propagation here
+    e.stopPropagation();
+    startauto.clockpicker('show');
+});
+$('#endtimebtn').click(function(e){
+    // Have to stop propagation here
+    e.stopPropagation();
+    endauto.clockpicker('show');
+});
