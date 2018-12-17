@@ -43,102 +43,110 @@
     <div class="container">
 		<br>
 		<div>
-			<div class="Top-Left">
-				<h1>Setting</h1>
-			</div>
-			<div class="Top-Right">
-				<div class="toggleonoff">
-					<label class="switch">
-						<input type="checkbox" name="on/off" onclick="checkStatus(this)">
-						<span class="slider round"></span>
-					</label>
-					<br>
-					<a id="toggleStatus">Light Status : OFF</a>
+			<div class="row">
+				<div class="col-lg-6">
+					<h1>Setting</h1>
+				</div>
+				<div class="col-lg-6" >
+					<div class="toggleonoff" id="onoff">
+						<label class="switch">
+							<input type="checkbox" name="on/off" onclick="checkStatus(this)">
+							<span class="slider round"></span>
+						</label>
+						<a id="toggleStatus">Light Status : OFF</a>
+					</div>
 				</div>
 			</div>
 		</div>
-		<br><br><hr><br>
-		<div class="boxed">
-			<h3>Description</h3><br><br>
-			<p>EarlyBIRD Mode - Auto bright when outside is bright.</p>
-			<p>NightOWL Mode - Auto bright when outside is dark.</p>
-			<p>Auto Mode - Turn on/off auto brightness.</p>
-			<p>Set current brightness - Select current high or low brightness.</p>	
-			<p>Pick on and off time - Pick period of time to auto brightness.</p>
+		<hr><br>
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-body">
+						<h3>Description</h3><br>
+						<p>EarlyBIRD Mode - Auto bright when outside is bright.</p>
+						<p>NightOWL Mode - Auto bright when outside is dark.</p>
+						<p>Auto Mode - Turn on/off auto brightness.</p>
+						<p>Set current brightness - Select current high or low brightness.</p>	
+						<p>Pick on and off time - Pick period of time to auto brightness.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-6">
+				<br>
+				<div class="row">
+					<div class="col-4">
+						<p>Mode : </p>
+					</div>
+					<div class="col-3">
+						<div class="toggleMode">
+							<label class="switch-sm">
+								<input type="checkbox" name="Mode" onclick="checkModeStatus(this)">
+								<span class="slider-sm"></span>
+							</label>
+						</div>
+					</div>
+					<div class="col-0">
+						<a id="toggleModeStatus">EarlyBIRD</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4">
+						<p>Turn on auto mode</p>
+					</div>
+					<div class="col-3">
+						<div class="toggleAuto">
+							<label class="switch-sm">
+								<input type="checkbox" name="Auto" onclick="checkAutoStatus(this)">
+								<span class="slider-sm"></span>
+							</label>
+						</div>
+					</div>
+					<div class="col-0">
+						<a id="toggleAutoStatus">OFF</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4">
+						<p>Set current brightness</p>
+					</div>
+					<div class="col-3">
+						<div class="toggleBrightness">
+							<label class="switch-sm">
+								<input type="checkbox" name="Brightness" onclick="checkBrightnessStatus(this)">
+								<span class="slider-sm"></span>
+							</label>
+						</div>
+					</div>
+					<div class="col-0">
+						<a id="toggleBrightnessStatus">DIM</a>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="col-4">
+						<p>Pick on and off time</p>
+					</div>
+					<div class="col-3">
+						<button type="button" class="btn btn-info btn-block" id="starttime">Start Time</button>
+					</div>
+					<div class="col-3">
+						<button type="button" class="btn btn-info btn-block" id="endtime">End Time</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4">
+						<p></p>
+					</div>
+					<div class="col-3">
+						<span id="starttime" value=""></span>
+					</div>
+					<div class="col-3">
+						<span id="endtime" value=""></span>
+					</div>
+				</div>
+			</div>  
 		</div>
-		<div class="toggleZone">
-			<br>
-			<div class="row">
-				<div class="col-4">
-					<p>Mode : </p>
-				</div>
-				<div class="col-3">
-					<div class="toggleMode">
-						<label class="switch-sm">
-							<input type="checkbox" name="Mode" onclick="checkModeStatus(this)">
-							<span class="slider-sm"></span>
-						</label>
-					</div>
-				</div>
-				<div class="col-0">
-					<a id="toggleModeStatus">EarlyBIRD</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-4">
-					<p>Turn on auto mode</p>
-				</div>
-				<div class="col-3">
-					<div class="toggleAuto">
-						<label class="switch-sm">
-							<input type="checkbox" name="Auto" onclick="checkAutoStatus(this)">
-							<span class="slider-sm"></span>
-						</label>
-					</div>
-				</div>
-				<div class="col-0">
-					<a id="toggleAutoStatus">OFF</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-4">
-					<p>Set current brightness</p>
-				</div>
-				<div class="col-3">
-					<div class="toggleBrightness">
-						<label class="switch-sm">
-							<input type="checkbox" name="Brightness" onclick="checkBrightnessStatus(this)">
-							<span class="slider-sm"></span>
-						</label>
-					</div>
-				</div>
-				<div class="col-0">
-					<a id="toggleBrightnessStatus">DIM</a>
-				</div>
-			</div>	
-			<div class="row">
-				<div class="col-4">
-					<p>Pick on and off time</p>
-				</div>
-				<div class="col-3">
-					<button type="button" class="btn btn-info btn-block" id="starttime">Start Time</button>
-				</div>
-				<div class="col-3">
-					<button type="button" class="btn btn-info btn-block" id="endtime">End Time</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-4">
-					<p></p>
-				</div>
-				<div class="col-3">
-					<span id="starttime" value=""></span>
-				</div>
-				<div class="col-3">
-					<span id="endtime" value=""></span>
-				</div>
-			</div>
-		</div>  
     </div>
 
     <!-- Optional JavaScript -->

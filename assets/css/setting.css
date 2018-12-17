@@ -1,27 +1,13 @@
-div.boxed {
-	LINE-HEIGHT:10px;
-	border-right: 1px solid green ;
-	padding-right: 30px;
-	position: absolute;
-	left: 10%;
-	max-width: 37.5%;
-}
-
-div.toggleZone{
-	margin-left:50%;
-}
-
-div.container{
+.container{	
 	LINE-HEIGHT:30px;
 }
 
-div.Top-Left{
-	position: absolute;
-	left: 10%;
+#onoff{
+	float: right;
 }
-div.Top-Right{
-	position: absolute;
-	right: 25%;
+
+.card-body{
+	line-height:20px;
 }
 
 .toggleMode{
