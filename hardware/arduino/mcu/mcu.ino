@@ -25,8 +25,21 @@ MicroGear microgear(client);
 void onMsghandler(char *topic, uint8_t* msg, unsigned int msglen) 
 {
     Serial.print("Incoming message --> ");
-    msg[msglen] = '\0';
-    Serial.println((char *)msg);
+    Serial.print(topic);
+    Serial.print(" : ");
+    char strState[msglen];
+    for (int i = 0; i < msglen; i++) 
+    {
+      strState[i] = (char)msg[i];
+      Serial.print((char)msg[i]);
+    }
+    Serial.println();
+    String stateStr = String(strState).substring(0, msglen);
+    
+    for (int i = 0; i < 5; i++) stm32Serial.write(strState);
+    Serial.print("Sent: ");
+    Serial.println(msglen);
+    Serial.println(strState);
 }
 
 
@@ -61,25 +74,28 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Serial.println("MCU running");
+  //Serial.println("MCU running");
   if (microgear.connected())
     {
        microgear.loop();
-       Serial.println("connected");
+       //Serial.println("connected");
 
        if(stm32Serial.available()){
-        Serial.println("stm available");
+        //Serial.println("stm available");
         String tmp = "";
+        int e=0;
         while (stm32Serial.available() > 0) {
           char c = stm32Serial.read();
           if (c == '\n') break;
           if (c == 0) continue;
+          if (c == '/' ) e+=1;
           tmp += c;
         }
-
+        if (e != 4 ) return;
         if (tmp == "") return;
         
         microgear.chat(TargetWeb , tmp);
+        Serial.print("Receive: ");
         Serial.println(tmp);
       }
 

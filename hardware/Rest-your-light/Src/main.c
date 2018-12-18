@@ -51,15 +51,21 @@ TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim4;
 
 UART_HandleTypeDef huart2;
+DMA_HandleTypeDef hdma_usart2_rx;
+DMA_HandleTypeDef hdma_usart2_tx;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+char recieve[3]={"\0"};
+char send[60]={"\0"};
+uint16_t brightness_percent =0;
+uint8_t led_switch =0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_ADC1_Init(void);
@@ -71,7 +77,19 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+//	uint8_t c = recieve[1] - '0';
+//	uint8_t v = recieve[2] - '0';
+//	switch(c){
+//		case 1:
+//			led_switch=v;
+//			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_15);
+//			break;
+//
+//	}
+//	HAL_UART_Receive_DMA(&huart2, recieve, sizeof(recieve));
+}
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
@@ -107,6 +125,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_USART2_UART_Init();
   MX_TIM4_Init();
   MX_ADC1_Init();
@@ -114,33 +133,44 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-	uint16_t max_ldr = 3000;
+	uint16_t max_ldr = 1000;
 	uint16_t min_ldr = 0;
 	uint16_t ldr_p = max_ldr - min_ldr;
-	uint16_t brightness_percent =0;
 	uint16_t t = 0.0;
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
+		HAL_UART_Receive_IT(&huart2, recieve, sizeof(recieve));
+		if(led_switch){
+				htim4.Instance->CCR3 = brightness_percent*2;
+				htim1.Instance->CCR1 = brightness_percent*2;
+		}else{
+				htim4.Instance->CCR3 = 0;
+				htim1.Instance->CCR1 = 0;
+				t = 0;
+		}
+
+
 		HAL_ADC_Start(&hadc1);
 		if (HAL_ADC_PollForConversion(&hadc1, 1000) == HAL_OK) {
 			uint16_t adc = HAL_ADC_GetValue(&hadc1);
 			if(adc > max_ldr) max_ldr=adc;
-			//else if(adc < min_ldr) min_ldr=adc;
+			ldr_p = max_ldr - min_ldr;
 			uint16_t adc_percent = (double) (1.0 - ((double) (max_ldr - adc) / (double) ldr_p)) * 100.0;
 			brightness_percent = adc_percent;
 
-			char text[60]={"\0"};
+			char send[60]={"\0"};
 			// adc: %d/percent: %d/\r\n
-			sprintf(text, "/%d/%d/%d/\r\n", adc, adc_percent,t);
-			t+=100;
-			HAL_UART_Transmit(&huart2, (uint8_t*) text, sizeof(text), 100);
+			sprintf(send, "/%d/%d/%d/\n", adc, adc_percent,t);
+			HAL_UART_Transmit_DMA(&huart2, (uint8_t*) send, sizeof(send));
 			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_13);
 		}
-		htim4.Instance->CCR3 = brightness_percent*2;
-		htim1.Instance->CCR1 = brightness_percent*2;
+
+
 		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);
 		t+=500;
 		HAL_Delay(500);
@@ -287,7 +317,7 @@ static void MX_TIM1_Init(void)
   }
 
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 200;
+  sConfigOC.Pulse = 100;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -351,7 +381,7 @@ static void MX_TIM4_Init(void)
   }
 
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 200;
+  sConfigOC.Pulse = 100;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
@@ -379,6 +409,24 @@ static void MX_USART2_UART_Init(void)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
+
+}
+
+/** 
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void) 
+{
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Stream5_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
+  /* DMA1_Stream6_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
 
 }
 
