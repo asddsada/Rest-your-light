@@ -13,6 +13,11 @@ function updateClock() {
     
 	setTimeout(updateClock, 1000);
 }
+
+if(sessionStorage.getItem("switchOnFlag") == null) {
+      sessionStorage.setItem("switchOnFlag", false);
+} 
+
 function checkStatus(checkbox){
     sessionStorage.setItem('switchOnFlag',checkbox.checked);
     console.log(sessionStorage.getItem('switchOnFlag'));
