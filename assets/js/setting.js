@@ -1,12 +1,3 @@
-$(document).ready(function () {
-    updateCheckBox();
-	updateModeCheckBox();
-	updateAutoCheckBox();
-	updateBrightnessCheckBox();
-	updateStartTime();
-	updateEndTime();
-});
-
 //init default value of all sessionStorage
 if(sessionStorage.getItem("switchModeOnFlag") == null) {
       sessionStorage.setItem("switchModeOnFlag", false);
@@ -25,16 +16,25 @@ if(sessionStorage.getItem("endtimeFlag") == null) {
 }
 //end of init
 
-function checkModeStatus(checkbox){
-    sessionStorage.setItem('switchModeOnFlag',checkbox.checked);
+$(document).ready(function () {
+    updateCheckBox();
+    updateModeCheckBox();
+    updateAutoCheckBox();
+    updateBrightnessCheckBox();
+    updateStartTime();
+    updateEndTime();
+});
+
+function checkModeStatus(checkbox) {
+    sessionStorage.setItem('switchModeOnFlag', checkbox.checked);
     console.log(sessionStorage.getItem('switchModeOnFlag'));
-    if (sessionStorage.getItem('switchModeOnFlag') == "true"){
+    if (sessionStorage.getItem('switchModeOnFlag') == "true") {
         console.log('nightowl');
         document.getElementById("toggleModeStatus").innerHTML = "NightOWL";
-    }else{
+    } else {
         console.log('earlybird');
         document.getElementById("toggleModeStatus").innerHTML = "EarlyBIRD";
-	}
+    }
 }
 function updateModeCheckBox() {
     console.log(sessionStorage.getItem('switchModeOnFlag'));
@@ -46,16 +46,16 @@ function updateModeCheckBox() {
         document.getElementById("toggleModeStatus").innerHTML = "EarlyBIRD";
     }
 }
-function checkAutoStatus(checkbox){
-    sessionStorage.setItem('switchAutoOnFlag',checkbox.checked);
+function checkAutoStatus(checkbox) {
+    sessionStorage.setItem('switchAutoOnFlag', checkbox.checked);
     console.log(sessionStorage.getItem('switchAutoOnFlag'));
-    if (sessionStorage.getItem('switchAutoOnFlag') == "true"){
+    if (sessionStorage.getItem('switchAutoOnFlag') == "true") {
         console.log('on');
         document.getElementById("toggleAutoStatus").innerHTML = "ON";
-    }else{
+    } else {
         console.log('off');
         document.getElementById("toggleAutoStatus").innerHTML = "OFF";
-	}
+    }
 }
 function updateAutoCheckBox() {
     console.log(sessionStorage.getItem('switchAutoOnFlag'));
@@ -67,16 +67,16 @@ function updateAutoCheckBox() {
         document.getElementById("toggleAutoStatus").innerHTML = "OFF";
     }
 }
-function checkBrightnessStatus(checkbox){
-    sessionStorage.setItem('switchBrightnessOnFlag',checkbox.checked);
+function checkBrightnessStatus(checkbox) {
+    sessionStorage.setItem('switchBrightnessOnFlag', checkbox.checked);
     console.log(sessionStorage.getItem('switchBrightnessOnFlag'));
-    if (sessionStorage.getItem('switchBrightnessOnFlag') == "true"){
-        console.log('bright');
+    if (sessionStorage.getItem('switchBrightnessOnFlag') == "true") {
+        console.log('on');
         document.getElementById("toggleBrightnessStatus").innerHTML = "BRIGHT";
-    }else{
-        console.log('dim');
+    } else {
+        console.log('off');
         document.getElementById("toggleBrightnessStatus").innerHTML = "DIM";
-	}
+    }
 }
 function updateBrightnessCheckBox() {
     console.log(sessionStorage.getItem('switchBrightnessOnFlag'));
@@ -89,33 +89,41 @@ function updateBrightnessCheckBox() {
     }
 }
 
-//clockpicker part
+
 var startauto = $('#starttime');
 startauto.clockpicker({
-	placement: 'top',
+    placement: 'top',
     align: 'left',
-    donetext: 'Done'
+    donetext: 'Done',
+    afterDone: function () {
+        sessionStorage.setItem('starttimeFlag', document.getElementById("starttime").value);
+        console.log(sessionStorage.getItem('starttimeFlag'));
+    }
 });
 
 var endauto = $('#endtime');
 endauto.clockpicker({
-	placement: 'top',
+    placement: 'top',
     align: 'left',
-    donetext: 'Done'
+    donetext: 'Done',
+    afterDone: function () {
+        sessionStorage.setItem('endtimeFlag', document.getElementById("endtime").value);
+        console.log(sessionStorage.getItem('endtimeFlag'));
+    }
 });
 
-$('#starttimebtn').click(function(e){
+// Manual operations
+$('#starttimebtn').click(function (e) {
     // Have to stop propagation here
     e.stopPropagation();
     startauto.clockpicker('show');
-	document.getElementById("isSubmit").innerHTML = "";
 });
-$('#endtimebtn').click(function(e){
+$('#endtimebtn').click(function (e) {
     // Have to stop propagation here
     e.stopPropagation();
     endauto.clockpicker('show');
-	document.getElementById("isSubmit").innerHTML = "";
 });
+
 function updateStartTime() {
     console.log(sessionStorage.getItem('starttimeFlag'));
 	$('input[type="text"][name*="inpStart"]').prop(document.getElementById("starttime").value);
@@ -127,10 +135,11 @@ function updateEndTime() {
 	document.getElementById("endtime").value = sessionStorage.getItem('endtimeFlag');
 }
 
-function submitTime(){
-	sessionStorage.setItem('starttimeFlag', document.getElementById("starttime").value);
+function clearTime(){
+	sessionStorage.setItem("starttimeFlag", "00:00");
+	sessionStorage.setItem("endtimeFlag", "00:00");
+	document.getElementById("starttime").value = sessionStorage.getItem('starttimeFlag');
+	document.getElementById("endtime").value = sessionStorage.getItem('endtimeFlag');
 	console.log(sessionStorage.getItem('starttimeFlag'));
-	sessionStorage.setItem('endtimeFlag', document.getElementById("endtime").value);
 	console.log(sessionStorage.getItem('endtimeFlag'));
-	document.getElementById("isSubmit").innerHTML = "Submitted";
 }
