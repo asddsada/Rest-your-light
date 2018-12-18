@@ -41,41 +41,41 @@
 
     <!-- ##########  PAGE BODY START HERE!!!! ###########-->
     <div class="container">
-		<br>
-		<div class="row">
-			<div class="col-lg-6">
-				<h1>Home</h1>
-			</div>
-			<div class="col-lg-6" id="top-right">
-				<h5><span id="datetime"></span></h5>
-			</div>
-		</div>
-		<hr><br>
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="card" >
-					<div class="card-body">
-							<h4 class="card-title">Status</h4><br>
-							<p id="raw_data">Data from Node MCU = </p>
-							<p id="get_topic">Topic = </p>
-							<p id="light">Light = </p>
-							<p id="period">Time period = </p>
-							<h1 id="connected_NETPIE"></h1>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<br><br><br>
-				<div class="toggleonoff">
-					<label class="switch">
-						<input type="checkbox" name="on/off" onclick="checkStatus(this)">
-						<span class="slider round"></span>
-					</label>
-					<br>
-					<a id="toggleStatus">Light Status : OFF</a>
-				</div>
-			</div>
-		</div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <h1>Home</h1>
+            </div>
+            <div class="col-lg-6" id="top-right">
+                <h5><span id="datetime"></span></h5>
+            </div>
+        </div>
+        <hr><br>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body status-card">
+                        <h4 id="connected_NETPIE" class="card-title">Status</h4><br>
+                        <p id="raw_data">Data from Node MCU = </p>
+                        <p id="get_topic">Topic = </p>
+                        <p id="adc">ADC = </p>
+                        <p id="light">Light = </p>
+                        <p id="period">ON period = </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <br><br><br>
+                <div class="toggleonoff">
+                    <label class="switch">
+                        <input type="checkbox" name="on/off" onclick="checkStatus(this)">
+                        <span class="slider round"></span>
+                    </label>
+                    <br>
+                    <a id="toggleStatus">Light Status : OFF</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->

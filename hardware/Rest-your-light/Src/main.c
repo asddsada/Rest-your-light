@@ -118,6 +118,7 @@ int main(void)
 	uint16_t min_ldr = 0;
 	uint16_t ldr_p = max_ldr - min_ldr;
 	uint16_t brightness_percent =0;
+	uint16_t t = 0.0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -133,14 +134,15 @@ int main(void)
 
 			char text[60]={"\0"};
 			// adc: %d/percent: %d/\r\n
-			sprintf(text, "/%d/%d/\r\n", adc, adc_percent);
-			HAL_UART_Transmit(&huart2, (uint8_t*) text, sizeof(text), 1000);
+			sprintf(text, "/%d/%d/%d/\r\n", adc, adc_percent,t);
+			t+=100;
+			HAL_UART_Transmit(&huart2, (uint8_t*) text, sizeof(text), 100);
 			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_13);
 		}
 		htim4.Instance->CCR3 = brightness_percent*2;
 		htim1.Instance->CCR1 = brightness_percent*2;
 		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);
-
+		t+=500;
 		HAL_Delay(500);
   /* USER CODE END WHILE */
 

@@ -17,7 +17,7 @@ div.col-lg-6#top-right{
 	text-align: right;
 }
 
-#raw_data, #get_topic, #light, #period{
+.card-status p{
 	margin-left:10%;
 }
 

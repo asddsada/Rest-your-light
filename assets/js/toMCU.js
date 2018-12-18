@@ -22,16 +22,18 @@ var microgear = Microgear.create({
     var split_msg = msg.split("/"); //String data = "/" +String(Humidity) + "/" + String(Temp);
     console.log(msg);  // for debug
     if (typeof (split_msg[0]) != 'undefined' && split_msg[0] == "") {
-        light = split_msg[1];
-        period = split_msg[2];
-        document.getElementById("light").innerHTML = "Light = " + light;
-        document.getElementById("period").innerHTML = "Time period = " + period + " minute";
+        adc = split_msg[1];
+        light = split_msg[2];
+        period = Math.round(split_msg[3]/10/60)/100;
+        document.getElementById("adc").innerHTML = "ADC = " + adc;
+        document.getElementById("light").innerHTML = "Light = " + light+" %";
+        document.getElementById("period").innerHTML = "ON period = " + period + " minute";
     }
   });
 
 microgear.on('connected', function() {
     microgear.setAlias(ALIAS);
-    document.getElementById("connected_NETPIE").innerHTML = "Connected to NETPIE"
+    document.getElementById("connected_NETPIE").innerHTML = "Status: Connected to NETPIE"
   });
 
   microgear.on('present', function(event) {
