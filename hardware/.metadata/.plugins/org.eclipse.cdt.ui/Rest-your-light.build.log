@@ -1,0 +1,23 @@
+18:22:55 **** Incremental Build of configuration Debug for project Rest-your-light ****
+make all 
+Building file: ../Src/main.c
+Invoking: MCU GCC Compiler
+E:\nNote\3.1embedded_lab\embedded project\hardware\Rest-your-light\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F407xx -I"E:/nNote/3.1embedded_lab/embedded project/hardware/Rest-your-light/Inc" -I"E:/nNote/3.1embedded_lab/embedded project/hardware/Rest-your-light/Drivers/STM32F4xx_HAL_Driver/Inc" -I"E:/nNote/3.1embedded_lab/embedded project/hardware/Rest-your-light/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"E:/nNote/3.1embedded_lab/embedded project/hardware/Rest-your-light/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"E:/nNote/3.1embedded_lab/embedded project/hardware/Rest-your-light/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
+Finished building: ../Src/main.c
+ 
+Building target: Rest-your-light.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -specs=nosys.specs -specs=nano.specs -T"../STM32F407VGTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "Rest-your-light.elf" @"objects.list"   -lm
+Finished building target: Rest-your-light.elf
+ 
+make --no-print-directory post-build
+Generating hex and Printing size information:
+arm-none-eabi-objcopy -O ihex "Rest-your-light.elf" "Rest-your-light.hex"
+arm-none-eabi-size "Rest-your-light.elf"
+   text	   data	    bss	    dec	    hex	filename
+  15500	    120	   1840	  17460	   4434	Rest-your-light.elf
+ 
+
+18:22:56 Build Finished (took 1s.421ms)
+
