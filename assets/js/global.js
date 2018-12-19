@@ -12,14 +12,31 @@ $(document).ready(function () {
         updateBrightnessCheckBox();
         for (i = 0; i < 2000; i++); console.log("brightness ready");
         setTimeout(function () {
-            document.getElementById("commit").innerHTML = "Done";
-            $('input[type="checkbox"][name*="Mode"]')[0].removeAttribute("disabled");
-            $('input[type="checkbox"][name*="on/off"]')[0].removeAttribute("disabled");
-            $('input[type="checkbox"][name*="Auto"]')[0].removeAttribute("disabled");
-            $('input[type="checkbox"][name*="Brightness"]')[0].removeAttribute("disabled");
+            removeDisabled();
         }, 5000);
     }, 1000);
 });
+
+function removeDisabled() {
+    document.getElementById("commit").innerHTML = "Success!";
+    document.getElementById("commit").className = "alert alert-success";
+    $('input[type="checkbox"][name*="on/off"]')[0].removeAttribute("disabled");
+    if ($('input[type="checkbox"][name*="Mode"]')[0] != null) {
+        $('input[type="checkbox"][name*="Mode"]')[0].removeAttribute("disabled");
+        $('input[type="checkbox"][name*="Auto"]')[0].removeAttribute("disabled");
+        $('input[type="checkbox"][name*="Brightness"]')[0].removeAttribute("disabled");
+    }
+}
+function makeDisabled() {
+    document.getElementById("commit").innerHTML = "Submiting...";
+    document.getElementById("commit").className = "alert alert-danger";
+    $('input[type="checkbox"][name*="on/off"]')[0].setAttribute("disabled", "");
+    if ($('input[type="checkbox"][name*="Mode"]')[0] != null) {
+        $('input[type="checkbox"][name*="Mode"]')[0].setAttribute("disabled", "");
+        $('input[type="checkbox"][name*="Auto"]')[0].setAttribute("disabled", "");
+        $('input[type="checkbox"][name*="Brightness"]')[0].setAttribute("disabled", "");
+    }
+}
 
 var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -48,8 +65,7 @@ function checkStatus(checkbox) {
             console.log('on');
             document.getElementById("toggleStatus").innerHTML = "Light Status : ON";
             setTimeout(function () {
-                document.getElementById("commit").innerHTML = "Done";
-                 $('input[type="checkbox"][name*="on/off"]')[0].removeAttribute("disabled");
+                removeDisabled();
             }, 5000);
         }, 1000);
     } else {
@@ -58,13 +74,11 @@ function checkStatus(checkbox) {
             console.log('off');
             document.getElementById("toggleStatus").innerHTML = "Light Status : OFF";
             setTimeout(function () {
-                document.getElementById("commit").innerHTML = "Done";
-                 $('input[type="checkbox"][name*="on/off"]')[0].removeAttribute("disabled");
+                removeDisabled();
             }, 5000);
         }, 1000);
     }
-     $('input[type="checkbox"][name*="on/off"]')[0].setAttribute("disabled", "");
-    document.getElementById("commit").innerHTML = "Submiting";
+    makeDisabled();
 }
 
 function updateCheckBox() {
@@ -78,6 +92,5 @@ function updateCheckBox() {
         $('input[type="checkbox"][name*="on/off"]').prop('checked', false);
         document.getElementById("toggleStatus").innerHTML = "Light Status : OFF";
     }
-    $('input[type="checkbox"][name*="on/off"]')[0].setAttribute("disabled", "");
-    document.getElementById("commit").innerHTML = "Submiting";
+    makeDisabled();
 }

@@ -1,9 +1,14 @@
-body{
-	
+nav.navbar{
+  position: fixed;
+  width: -webkit-fill-available;
+  top: 0;
+  z-index: 1;
 }
 
 .container{
-	LINE-HEIGHT:30px;
+  LINE-HEIGHT:30px;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
 }
 
 .card-body{
@@ -33,6 +38,7 @@ div.col-lg-6#top-right{
   opacity: 0;
   width: 0;
   height: 0;
+  cursor: pointer;
 }
 /* The slider */	
 .slider {
@@ -89,7 +95,22 @@ input:checked + .slider:before {
 
 .switch-sm input:disabled + .slider-sm:before{
   background-color:transparent;
+  cursor: wait;
 }
 .switch input:disabled + .slider.round:before{
   background-color:transparent;
+  cursor: wait;
 }
+
+.switch-sm input:disabled + .slider-sm{
+  cursor: wait;
+}
+.switch input:disabled + .slider.round{
+  cursor: wait;
+}
+#commit{
+  text-align: center;
+  font-weight: 500;
+  width: 9rem;
+}
+

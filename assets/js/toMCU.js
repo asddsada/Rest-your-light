@@ -26,8 +26,9 @@ microgear.on('message', function (topic, msg) {
         light = split_msg[2];
         period = Math.round(split_msg[3] / 10 / 60) / 100;
         document.getElementById("adc").innerHTML = "ADC = " + adc;
-        document.getElementById("light").innerHTML = "Light = " + light + " %";
+        document.getElementById("light").innerHTML = "ENV brightness = " + light + " %";
         document.getElementById("period").innerHTML = "ON period = " + period + " minute";
+        document.getElementById("led-light").innerHTML = "LED brightness = " + period + " %";
     }
 });
 

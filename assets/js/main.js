@@ -1,6 +1,6 @@
 function updateModeCheckBox() {
     console.log(sessionStorage.getItem('switchModeOnFlag'));
-    document.getElementById("commit").innerHTML = "Submiting";
+    makeDisabled();
     if (sessionStorage.getItem('switchModeOnFlag') == "true") {
         microgear.chat(thing1, "/21");
     } else {
@@ -9,7 +9,7 @@ function updateModeCheckBox() {
 }
 function updateAutoCheckBox() {
     console.log(sessionStorage.getItem('switchAutoOnFlag'));
-    document.getElementById("commit").innerHTML = "Submiting";
+    makeDisabled();
     if (sessionStorage.getItem('switchAutoOnFlag') == "true") {
         microgear.chat(thing1, "/31");
     } else {
@@ -18,7 +18,7 @@ function updateAutoCheckBox() {
 }
 function updateBrightnessCheckBox() {
     console.log(sessionStorage.getItem('switchBrightnessOnFlag'));
-    document.getElementById("commit").innerHTML = "Submiting";
+    makeDisabled();
     if (sessionStorage.getItem('switchBrightnessOnFlag') == "true") {
         microgear.chat(thing1, "/41");
     } else {
