@@ -38,6 +38,7 @@
 /* USER CODE BEGIN 0 */
 extern char recieve[2];
 extern uint8_t led_switch;
+extern uint8_t mode;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -79,6 +80,7 @@ void DMA1_Stream5_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
 
+	HAL_UART_Receive_DMA(&huart2, recieve, sizeof(recieve));
   /* USER CODE END DMA1_Stream5_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_usart2_rx);
   /* USER CODE BEGIN DMA1_Stream5_IRQn 1 */
@@ -120,15 +122,7 @@ void ADC_IRQHandler(void)
 void USART2_IRQHandler(void)
 {
   /* USER CODE BEGIN USART2_IRQn 0 */
-	uint8_t c = recieve[0] - '0';
-	uint8_t v = recieve[1] - '0';
-	switch(c){
-		case 1:
-			led_switch=v;
-			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_15);
-			break;
 
-	}
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
   /* USER CODE BEGIN USART2_IRQn 1 */

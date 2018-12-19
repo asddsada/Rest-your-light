@@ -85,3 +85,11 @@ input:checked + .slider:before {
 #toggleStatus{
 	margin-left:10px;
 }
+
+
+.switch-sm input:disabled + .slider-sm:before{
+  background-color:transparent;
+}
+.switch input:disabled + .slider.round:before{
+  background-color:transparent;
+}

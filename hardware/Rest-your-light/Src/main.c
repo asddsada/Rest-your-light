@@ -59,7 +59,11 @@ DMA_HandleTypeDef hdma_usart2_tx;
 char recieve[3]={"\0"};
 char send[60]={"\0"};
 uint16_t brightness_percent =0;
+
 uint8_t led_switch =0;
+uint8_t mode =0;
+uint8_t auto_mode = 0;
+uint8_t brightness = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -79,16 +83,26 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 /* Private function prototypes -----------------------------------------------*/
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-//	uint8_t c = recieve[1] - '0';
-//	uint8_t v = recieve[2] - '0';
-//	switch(c){
-//		case 1:
-//			led_switch=v;
-//			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_15);
-//			break;
-//
-//	}
-//	HAL_UART_Receive_DMA(&huart2, recieve, sizeof(recieve));
+	uint8_t c = recieve[1] - '0';
+	uint8_t v = recieve[2] - '0';
+	switch(c){
+		case 1: // 0 = off, 1 = on
+			led_switch=v;
+			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_15);
+			break;
+		case 2: // 0 =bird, 1 = owl
+			mode = v;
+			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_15);
+			break;
+		case 3: //auto 0=off, 1 = on
+			auto_mode = v;
+			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_15);
+			break;
+		case 4: //brightness 0=dim, 1 = bright
+			brightness =v ;
+			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_15);
+			break;
+	}
 }
 /* USER CODE END PFP */
 
@@ -137,6 +151,7 @@ int main(void)
 	uint16_t min_ldr = 0;
 	uint16_t ldr_p = max_ldr - min_ldr;
 	uint16_t t = 0.0;
+	uint16_t count = 0;
 
 
   /* USER CODE END 2 */
@@ -144,10 +159,15 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
-		HAL_UART_Receive_IT(&huart2, recieve, sizeof(recieve));
+		HAL_UART_Receive_DMA(&huart2, recieve, sizeof(recieve));
 		if(led_switch){
-				htim4.Instance->CCR3 = brightness_percent*2;
-				htim1.Instance->CCR1 = brightness_percent*2;
+			if(auto_mode){
+				htim4.Instance->CCR3 = ((100 + brightness_percent*(1- (2*mode)))%100)*0.65+((60+(19*mode))+(brightness*20))*0.35;
+
+			}else{
+				htim4.Instance->CCR3 = (20+(39*mode))+(brightness*40);
+			}
+			htim1.Instance->CCR1 = htim4.Instance->CCR3;
 		}else{
 				htim4.Instance->CCR3 = 0;
 				htim1.Instance->CCR1 = 0;
@@ -156,24 +176,24 @@ int main(void)
 
 
 		HAL_ADC_Start(&hadc1);
-		if (HAL_ADC_PollForConversion(&hadc1, 1000) == HAL_OK) {
+		if (count >=5 && HAL_ADC_PollForConversion(&hadc1, 1000) == HAL_OK) {
+			count =0;
 			uint16_t adc = HAL_ADC_GetValue(&hadc1);
 			if(adc > max_ldr) max_ldr=adc;
+			max_ldr = 1000 -(500*mode);
 			ldr_p = max_ldr - min_ldr;
 			uint16_t adc_percent = (double) (1.0 - ((double) (max_ldr - adc) / (double) ldr_p)) * 100.0;
 			brightness_percent = adc_percent;
 
 			char send[60]={"\0"};
-			// adc: %d/percent: %d/\r\n
-			sprintf(send, "/%d/%d/%d/\n", adc, adc_percent,t);
+			sprintf(send, "/%d/%d/%d/%d/\n", adc, adc_percent,t,htim4.Instance->CCR3);
 			HAL_UART_Transmit_DMA(&huart2, (uint8_t*) send, sizeof(send));
 			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_13);
 		}
 
-
-		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);
-		t+=500;
-		HAL_Delay(500);
+		count++;
+		t+=100;
+		HAL_Delay(100);
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */

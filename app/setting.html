@@ -47,7 +47,7 @@
 		<div>
 			<div class="row">
 				<div class="col-lg-6">
-					<h1>Setting</h1>
+					<h1>Setting</h1>					
 				</div>
 				<div class="col-lg-6">
 					<div class="toggleonoff" id="onoff">
@@ -66,12 +66,14 @@
 				<div class="card">
 					<div class="card-body">
 						<h3>Description</h3><br>
+						<h4 id="connected_NETPIE" class="card-title">Status</h4>
 						<p>EarlyBIRD Mode - Auto bright when outside is bright.</p>
 						<p>NightOWL Mode - Auto bright when outside is dark.</p>
 						<p>Auto Mode - Turn on/off auto brightness.</p>
 						<p>Set current brightness - Select current high or low brightness.</p>
 						<p>Click start and end to select start time and end time of auto mode.</p>
 						<p>If start time same as end time, auto mode depend on setting.</p>
+						<h4 id="commit">Starting</h4>
 					</div>
 				</div>
 			</div>
@@ -124,30 +126,6 @@
 					</div>
 					<div class="col-0">
 						<a id="toggleBrightnessStatus">DIM</a>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-4">
-						<p>Pick on and off time</p>
-					</div>
-					<div class="col-4">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<button class="btn btn-primary" type="button" id="starttimebtn">Start</button>
-							</div>
-							<input type="text" name="inpStart" class="form-control" placeholder="" aria-label="" id="starttime" size="5"
-							 disabled>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<button class="btn btn-primary" type="button" id="endtimebtn">End</button>
-							</div>
-							<input type="text" name="inpEnd" class="form-control" placeholder="" aria-label="" id="endtime" size="5"
-							 disabled>
-						</div>
 					</div>
 				</div>
 			</div>
