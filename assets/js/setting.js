@@ -50,11 +50,15 @@ function checkAutoStatus(checkbox) {
     sessionStorage.setItem('switchAutoOnFlag', checkbox.checked);
     console.log(sessionStorage.getItem('switchAutoOnFlag'));
     if (sessionStorage.getItem('switchAutoOnFlag') == "true") {
-        console.log('on');
+        console.log('autoOn');
         document.getElementById("toggleAutoStatus").innerHTML = "ON";
+		document.getElementById("setBrightness").disabled = true;
+		document.getElementById("lock").innerHTML = '<i class="fas fa-lock"></i>';
     } else {
-        console.log('off');
+        console.log('autoOff');
         document.getElementById("toggleAutoStatus").innerHTML = "OFF";
+		document.getElementById("setBrightness").disabled = false;
+		document.getElementById("lock").innerHTML = '';
     }
 }
 function updateAutoCheckBox() {
@@ -71,10 +75,10 @@ function checkBrightnessStatus(checkbox) {
     sessionStorage.setItem('switchBrightnessOnFlag', checkbox.checked);
     console.log(sessionStorage.getItem('switchBrightnessOnFlag'));
     if (sessionStorage.getItem('switchBrightnessOnFlag') == "true") {
-        console.log('on');
+        console.log('bright');
         document.getElementById("toggleBrightnessStatus").innerHTML = "BRIGHT";
     } else {
-        console.log('off');
+        console.log('dim');
         document.getElementById("toggleBrightnessStatus").innerHTML = "DIM";
     }
 }
