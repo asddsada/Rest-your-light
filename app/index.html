@@ -41,41 +41,43 @@
 
     <!-- ##########  PAGE BODY START HERE!!!! ###########-->
     <div class="container">
-		<br>
-		<div class="row">
-			<div class="col-lg-6">
-				<h1>Home</h1>
-			</div>
-			<div class="col-lg-6" id="top-right">
-				<h5><span id="datetime"></span></h5>
-			</div>
-		</div>
-		<hr><br>
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="card" >
-					<div class="card-body">
-							<h4 class="card-title">Status</h4><br>
-							<p id="raw_data">Data from Node MCU = </p>
-							<p id="get_topic">Topic = </p>
-							<p id="light">Light = </p>
-							<p id="period">Time period = </p>
-							<h1 id="connected_NETPIE"></h1>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<br><br><br>
-				<div class="toggleonoff">
-					<label class="switch">
-						<input type="checkbox" name="on/off" onclick="checkStatus(this)">
-						<span class="slider round"></span>
-					</label>
-					<br>
-					<a id="toggleStatus">Light Status : OFF</a>
-				</div>
-			</div>
-		</div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <h1>Home</h1>
+            </div>
+            <div class="col-lg-6" id="top-right">
+                <h5><span id="datetime"></span></h5>
+            </div>
+        </div>
+        <hr><br>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body status-card">
+                        <h4 id="connected_NETPIE" class="card-title">Status</h4><br>
+                        <p id="raw_data">Data from Node MCU = </p>
+                        <p id="get_topic">Topic = </p>
+                        <p id="period">ON period = </p>
+                        <p id="adc">ADC = </p>
+                        <p id="light">ENV brightness = </p>
+                        <p id="led-light">LED brightness = </p>
+                        <p id="commit" class="alert alert-secondary" role="alert">Starting...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <br><br><br>
+                <div class="toggleonoff">
+                    <label class="switch">
+                        <input type="checkbox" name="on/off" onclick="checkStatus(this)">
+                        <span class="slider round"></span>
+                    </label>
+                    <br>
+                    <a id="toggleStatus">Light Status : OFF</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->
@@ -87,52 +89,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="https://cdn.netpie.io/microgear.js"></script>
+    <script src="../assets/js/toMCU.js"></script>
     <script src="../assets/js/global.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script>
-        const APPID = "Your App ID";
-        const KEY = "Your App Key";
-        const SECRET = "Your App Secret";
-
-        const ALIAS = "HTML_web";         //  ชื่อตัวเอง
-        const thing1 = "NodeMCU1";          //  ชื่อเพื่อนที่จะคุย
-
-        var microgear = Microgear.create({
-            key: KEY,
-            secret: SECRET,
-            alias: ALIAS
-        });
-
-        microgear.on('message', function (topic, msg) {
-            document.getElementById("raw_data").innerHTML = "Data from Node MCU = " + msg;
-            document.getElementById("get_topic").innerHTML = "Topic = " + topic;
-            var split_msg = msg.split("/"); //String data = "/" +String(Humidity) + "/" + String(Temp);
-            console.log(msg);  // for debug
-            if (typeof (split_msg[0]) != 'undefined' && split_msg[0] == "") {
-                light = split_msg[1];
-                period = split_msg[2];
-                document.getElementById("light").innerHTML = "Light = " + light;
-                document.getElementById("period").innerHTML = "Time period = " + period + " minute";
-            }
-        });
-
-        microgear.on('connected', function () {
-            microgear.setAlias(ALIAS);
-            document.getElementById("connected_NETPIE").innerHTML = "Connected to NETPIE"
-        });
-
-        microgear.on('present', function (event) {
-            console.log(event);
-        });
-
-        microgear.on('absent', function (event) {
-            console.log(event);
-        });
-
-        microgear.resettoken(function (err) {
-            microgear.connect(APPID);
-        });
-    </script>
 </body>
 
 </html>
