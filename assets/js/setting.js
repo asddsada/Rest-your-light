@@ -8,12 +8,12 @@ if(sessionStorage.getItem("switchAutoOnFlag") == null) {
 if(sessionStorage.getItem("switchBrightnessOnFlag") == null) {
       sessionStorage.setItem("switchBrightnessOnFlag", false);
 }
-if(sessionStorage.getItem("starttimeFlag") == null) {
-      sessionStorage.setItem("starttimeFlag", "00:00");
-}
-if(sessionStorage.getItem("endtimeFlag") == null) {
-      sessionStorage.setItem("endtimeFlag", "00:00");
-}
+//if(sessionStorage.getItem("starttimeFlag") == null) {
+//      sessionStorage.setItem("starttimeFlag", "00:00");
+//}
+//if(sessionStorage.getItem("endtimeFlag") == null) {
+//      sessionStorage.setItem("endtimeFlag", "00:00");
+//}
 //end of init
 
 $(document).ready(function () {
@@ -21,8 +21,8 @@ $(document).ready(function () {
     updateModeCheckBox();
     updateAutoCheckBox();
     updateBrightnessCheckBox();
-    updateStartTime();
-    updateEndTime();
+    //updateStartTime();
+    //updateEndTime();
 });
 
 function checkModeStatus(checkbox) {
@@ -93,7 +93,7 @@ function updateBrightnessCheckBox() {
     }
 }
 
-
+/*
 var startauto = $('#starttime');
 startauto.clockpicker({
     placement: 'top',
@@ -147,3 +147,4 @@ function clearTime(){
 	console.log(sessionStorage.getItem('starttimeFlag'));
 	console.log(sessionStorage.getItem('endtimeFlag'));
 }
+*/
