@@ -5,12 +5,12 @@
 SoftwareSerial stm32Serial(13,15); //D7-RX,D8-TX
 
 
-//const char* ssid     = "My ASUS";
-//const char* password = "e5d29c3560d8";
+const char* ssid     = "My ASUS";
+const char* password = "e5d29c3560d8";
 
 
-const char* ssid     = "RONUN_2.4G";
-const char* password = "0982633969";
+//const char* ssid     = "RONUN_2.4G";
+//const char* password = "0982633969";
 
 #define APPID   "RestYourLight"
 #define KEY     "1AnUQ3YWhcH29oI"
