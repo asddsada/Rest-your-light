@@ -47,7 +47,7 @@
 		<div>
 			<div class="row">
 				<div class="col-lg-6">
-					<h1>Setting</h1>					
+					<h1>Setting</h1>
 				</div>
 				<div class="col-lg-6">
 					<div class="toggleonoff" id="onoff">
@@ -69,12 +69,11 @@
 						<h4 id="connected_NETPIE" class="card-title">Status</h4>
 						<p>EarlyBIRD Mode - Auto bright when outside is bright.</p>
 						<p>NightOWL Mode - Auto bright when outside is dark.</p>
-						<p>Auto Mode - Turn on/off auto brightness.</p>
-						<p>Set current brightness - Select current high or low brightness.</p>
-						<p>Click start and end to select start time and end time of auto mode.</p>
-						<p>If start time same as end time, auto mode depend on setting.</p>
+						<p>Auto Mode OFF - brightness is current brightness.</p>
+						<p>Auto Mode ON - Brightness is EarlyBIRD or NightOWL</p>
+						<p>Current brightness - Select current high or low brightness.</p>
 						<p id="commit" class="alert alert-secondary" role="alert">Starting...</p>
-                    </div>
+					</div>
 				</div>
 			</div>
 
@@ -98,7 +97,7 @@
 				</div>
 				<div class="row">
 					<div class="col-4">
-						<p>Turn on auto mode</p>
+						<p>Auto mode :</p>
 					</div>
 					<div class="col-3">
 						<div class="toggleAuto">
@@ -114,12 +113,12 @@
 				</div>
 				<div class="row">
 					<div class="col-4">
-						<p>Set current brightness</p>
+						<p>Current brightness :</p>
 					</div>
 					<div class="col-3">
 						<div class="toggleBrightness">
 							<label class="switch-sm">
-								<input type="checkbox" name="Brightness" onclick="checkBrightnessStatus(this)">
+								<input type="checkbox" name="Brightness" id="setBrightness" onclick="checkBrightnessStatus(this)">
 								<span class="slider-sm"></span>
 							</label>
 						</div>
@@ -129,8 +128,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="container">
 		</div>
 	</div>
 

@@ -45,7 +45,7 @@ function checkAutoStatus(checkbox) {
     if (sessionStorage.getItem('switchAutoOnFlag') == "true") {
         microgear.chat(thing1, "/31");
         setTimeout(function () {
-            console.log('on');
+            console.log('autoOn');
             document.getElementById("toggleAutoStatus").innerHTML = "ON";
             setTimeout(function () {
                 removeDisabled();
@@ -54,7 +54,7 @@ function checkAutoStatus(checkbox) {
     } else {
         microgear.chat(thing1, "/30");
         setTimeout(function () {
-            console.log('off');
+            console.log('autoOff');
             document.getElementById("toggleAutoStatus").innerHTML = "OFF";
             setTimeout(function () {
                 removeDisabled();
@@ -83,7 +83,7 @@ function checkBrightnessStatus(checkbox) {
     if (sessionStorage.getItem('switchBrightnessOnFlag') == "true") {
         microgear.chat(thing1, "/41");
         setTimeout(function () {
-            console.log('on');
+            console.log('bright');
             document.getElementById("toggleBrightnessStatus").innerHTML = "BRIGHT";
             setTimeout(function () {
                 removeDisabled();
@@ -92,7 +92,7 @@ function checkBrightnessStatus(checkbox) {
     } else {
         microgear.chat(thing1, "/40");
         setTimeout(function () {
-            console.log('off');
+            console.log('dim');
             document.getElementById("toggleBrightnessStatus").innerHTML = "DIM";
             setTimeout(function () {
                 removeDisabled();
