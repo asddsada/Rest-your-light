@@ -19,8 +19,8 @@ var microgear = Microgear.create({
 microgear.on('message', function (topic, msg) {
     document.getElementById("raw_data").innerHTML = "Data from Node MCU = " + msg;
     document.getElementById("get_topic").innerHTML = "Topic = " + topic;
-    var split_msg = msg.split("/"); //String data = "/" +String(Humidity) + "/" + String(Temp);
-    console.log(split_msg);  // for debug
+    var split_msg = msg.split("/");
+    //console.log(split_msg);  // for debug
     if (typeof (split_msg[0]) != 'undefined' && split_msg[0] == "") {
         adc = split_msg[1];
         light = split_msg[2];
@@ -48,3 +48,7 @@ microgear.on('absent', function (event) {
 microgear.resettoken(function (err) {
     microgear.connect(APPID);
 });
+
+microgear.on("error", function(err) {
+	console.log("Error: "+err);
+})
