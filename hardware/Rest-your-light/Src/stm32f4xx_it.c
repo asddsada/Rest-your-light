@@ -79,7 +79,7 @@ void SysTick_Handler(void)
 void DMA1_Stream5_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
-	HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);
+
 	HAL_UART_Receive_DMA(&huart2, recieve, sizeof(recieve));
   /* USER CODE END DMA1_Stream5_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_usart2_rx);
