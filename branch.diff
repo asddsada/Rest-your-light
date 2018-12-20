@@ -1,0 +1,81 @@
+diff --git a/assets/js/setting.js b/assets/js/setting.js
+index 3d4e7d4..d58f7b6 100644
+--- a/assets/js/setting.js
++++ b/assets/js/setting.js
+@@ -24,6 +24,7 @@ function checkModeStatus(checkbox) {
+     }
+ 
+ }
++
+ function updateModeCheckBox() {
+     console.log(sessionStorage.getItem('switchModeOnFlag'));
+     makeDisabled();
+@@ -37,6 +38,7 @@ function updateModeCheckBox() {
+         document.getElementById("toggleModeStatus").innerHTML = "EarlyBIRD";
+     }
+ }
++
+ function checkAutoStatus(checkbox) {
+     for (i = 0; i < 2000; i++);
+     sessionStorage.setItem('switchAutoOnFlag', checkbox.checked);
+diff --git a/assets/js/toMCU.js b/assets/js/toMCU.js
+index 5f91931..9c3970c 100644
+--- a/assets/js/toMCU.js
++++ b/assets/js/toMCU.js
+@@ -19,16 +19,17 @@ var microgear = Microgear.create({
+ microgear.on('message', function (topic, msg) {
+     document.getElementById("raw_data").innerHTML = "Data from Node MCU = " + msg;
+     document.getElementById("get_topic").innerHTML = "Topic = " + topic;
+-    var split_msg = msg.split("/"); //String data = "/" +String(Humidity) + "/" + String(Temp);
+-    console.log(split_msg);  // for debug
++    var split_msg = msg.split("/");
++    //console.log(split_msg);  // for debug
+     if (typeof (split_msg[0]) != 'undefined' && split_msg[0] == "") {
+         adc = split_msg[1];
+         light = split_msg[2];
++        blight = split_msg[4];
+         period = Math.round(split_msg[3] / 10 / 60) / 100;
+         document.getElementById("adc").innerHTML = "ADC = " + adc;
+         document.getElementById("light").innerHTML = "ENV brightness = " + light + " %";
+         document.getElementById("period").innerHTML = "ON period = " + period + " minute";
+-        document.getElementById("led-light").innerHTML = "LED brightness = " + period + " %";
++        document.getElementById("led-light").innerHTML = "LED brightness = " + blight + " %";
+     }
+ });
+ 
+@@ -47,4 +48,8 @@ microgear.on('absent', function (event) {
+ 
+ microgear.resettoken(function (err) {
+     microgear.connect(APPID);
+-});
+\ No newline at end of file
++});
++
++microgear.on("error", function(err) {
++	console.log("Error: "+err);
++})
+\ No newline at end of file
+diff --git a/branch.diff b/branch.diff
+new file mode 100644
+index 0000000..e69de29
+diff --git a/hardware/arduino/mcu/mcu.ino b/hardware/arduino/mcu/mcu.ino
+index 76ec04f..54e9f76 100644
+--- a/hardware/arduino/mcu/mcu.ino
++++ b/hardware/arduino/mcu/mcu.ino
+@@ -5,12 +5,12 @@
+ SoftwareSerial stm32Serial(13,15); //D7-RX,D8-TX
+ 
+ 
+-//const char* ssid     = "My ASUS";
+-//const char* password = "e5d29c3560d8";
++const char* ssid     = "My ASUS";
++const char* password = "e5d29c3560d8";
+ 
+ 
+-const char* ssid     = "RONUN_2.4G";
+-const char* password = "0982633969";
++//const char* ssid     = "RONUN_2.4G";
++//const char* password = "0982633969";
+ 
+ #define APPID   "RestYourLight"
+ #define KEY     "1AnUQ3YWhcH29oI"
