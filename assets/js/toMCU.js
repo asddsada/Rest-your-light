@@ -24,11 +24,12 @@ microgear.on('message', function (topic, msg) {
     if (typeof (split_msg[0]) != 'undefined' && split_msg[0] == "") {
         adc = split_msg[1];
         light = split_msg[2];
+        blight = split_msg[4];
         period = Math.round(split_msg[3] / 10 / 60) / 100;
         document.getElementById("adc").innerHTML = "ADC = " + adc;
         document.getElementById("light").innerHTML = "ENV brightness = " + light + " %";
         document.getElementById("period").innerHTML = "ON period = " + period + " minute";
-        document.getElementById("led-light").innerHTML = "LED brightness = " + period + " %";
+        document.getElementById("led-light").innerHTML = "LED brightness = " + blight + " %";
     }
 });
 

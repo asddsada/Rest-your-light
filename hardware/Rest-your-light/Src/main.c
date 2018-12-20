@@ -187,7 +187,6 @@ int main(void) {
 				max_ldr = adc;
 			else if (adc < min_ldr)
 				min_ldr = adc;
-			max_ldr = 1000 - (500 * mode);
 			ldr_p = max_ldr - min_ldr;
 			uint16_t adc_percent = (double) (1.0
 					- ((double) (max_ldr - adc) / (double) ldr_p)) * 100.0;

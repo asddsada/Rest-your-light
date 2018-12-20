@@ -24,6 +24,7 @@ function checkModeStatus(checkbox) {
     }
 
 }
+
 function updateModeCheckBox() {
     console.log(sessionStorage.getItem('switchModeOnFlag'));
     makeDisabled();
@@ -37,6 +38,7 @@ function updateModeCheckBox() {
         document.getElementById("toggleModeStatus").innerHTML = "EarlyBIRD";
     }
 }
+
 function checkAutoStatus(checkbox) {
     for (i = 0; i < 2000; i++);
     sessionStorage.setItem('switchAutoOnFlag', checkbox.checked);
