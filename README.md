@@ -16,8 +16,8 @@ just clone the project from git
 $ git clone https://github.com/asddsada/Rest-your-light.git
 ```
 ## run
-1. upload code onto hardware and run
+- upload code onto hardware and run
   - STM32F407VG
   - NodeMCU ESP8266
-2. Connect via Wifii
-3. run website on local host
+- Connect via Wifii
+- run website on local host
