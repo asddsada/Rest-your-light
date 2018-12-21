@@ -5,12 +5,12 @@
 SoftwareSerial stm32Serial(13,15); //D7-RX,D8-TX
 
 
-//const char* ssid     = "My ASUS";
-//const char* password = "e5d29c3560d8";
+const char* ssid     = "My ASUS";
+const char* password = "e5d29c3560d8";
 
 
-const char* ssid     = "RONUN_2.4G";
-const char* password = "0982633969";
+//const char* ssid     = "RONUN_2.4G";
+//const char* password = "0982633969";
 
 #define APPID   "RestYourLight"
 #define KEY     "1AnUQ3YWhcH29oI"
@@ -32,20 +32,19 @@ void onMsghandler(char *topic, uint8_t* msg, unsigned int msglen)
   {
     strState[i] = (char)msg[i];
     Serial.print((char)msg[i]);
-  }
-    
+  }    
   Serial.println();
-    String stateStr = String(strState).substring(0, msglen);
-
-    for (int i = 0; i < 10; i++) {
-      
-      delay(50);
-      Serial.print(i);
-      Serial.print("..");
-    }
-    stm32Serial.print(stateStr);
-    Serial.println();
-    Serial.println("Sent done");
+  
+  String stateStr = String(strState).substring(0, msglen);
+  stm32Serial.print(stateStr);
+    
+  for (int i = 0; i < 10; i++) {
+    delay(50);
+    Serial.print(i);
+    Serial.print("..");
+  }    
+  Serial.println();
+  Serial.println("Sent done");
 }
 
 
