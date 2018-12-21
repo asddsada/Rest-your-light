@@ -32,20 +32,19 @@ void onMsghandler(char *topic, uint8_t* msg, unsigned int msglen)
   {
     strState[i] = (char)msg[i];
     Serial.print((char)msg[i]);
-  }
-    
+  }    
   Serial.println();
-    String stateStr = String(strState).substring(0, msglen);
-
-    for (int i = 0; i < 10; i++) {
-      
-      delay(50);
-      Serial.print(i);
-      Serial.print("..");
-    }
-    stm32Serial.print(stateStr);
-    Serial.println();
-    Serial.println("Sent done");
+  
+  String stateStr = String(strState).substring(0, msglen);
+  stm32Serial.print(stateStr);
+    
+  for (int i = 0; i < 10; i++) {
+    delay(50);
+    Serial.print(i);
+    Serial.print("..");
+  }    
+  Serial.println();
+  Serial.println("Sent done");
 }
 
 

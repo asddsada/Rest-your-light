@@ -64,6 +64,8 @@ uint8_t led_switch =0;
 uint8_t mode =0;
 uint8_t auto_mode = 0;
 uint8_t brightness = 0;
+uint16_t max_ldr = 1000;
+uint16_t min_ldr = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -92,6 +94,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 			break;
 		case 2: // 0 =bird, 1 = owl
 			mode = v;
+			if (v) {
+						max_ldr = 1000;
+						min_ldr = 0;
+					} else {
+						max_ldr = 1400;
+						min_ldr = 300;
+					}
 			HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_15);
 			break;
 		case 3: //auto 0=off, 1 = on
@@ -147,8 +156,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-	uint16_t max_ldr = 1000;
-	uint16_t min_ldr = 0;
+
 	uint16_t ldr_p = max_ldr - min_ldr;
 	uint16_t t = 0.0;
 	uint16_t count = 0;
@@ -162,7 +170,7 @@ int main(void)
 		HAL_UART_Receive_DMA(&huart2, recieve, sizeof(recieve));
 		if(led_switch){
 			if(auto_mode){
-				htim4.Instance->CCR3 = ((100 + brightness_percent*(1- (2*mode)))%100)*0.65+((60+(19*mode))+(brightness*20))*0.35;
+				htim4.Instance->CCR3 = ((100 + brightness_percent*(1- (2*mode)))%100)*0.65+((50+(19*mode))+(brightness*30))*0.35;
 
 			}else{
 				htim4.Instance->CCR3 = (20+(39*mode))+(brightness*40);
@@ -179,8 +187,20 @@ int main(void)
 		if (count >=5 && HAL_ADC_PollForConversion(&hadc1, 1000) == HAL_OK) {
 			count =0;
 			uint16_t adc = HAL_ADC_GetValue(&hadc1);
-			if(adc > max_ldr) max_ldr=adc;
-			max_ldr = 1000 -(500*mode);
+
+			if(t%360000 == 0){ // restore light range every hour
+				if (mode) {
+					max_ldr = 1000;
+					min_ldr = 0;
+				} else {
+					max_ldr = 1400;
+					min_ldr = 300;
+				}
+			}else{
+				if(adc > max_ldr) max_ldr=adc;
+				else if(adc < min_ldr) min_ldr=adc;
+			}
+
 			ldr_p = max_ldr - min_ldr;
 			uint16_t adc_percent = (double) (1.0 - ((double) (max_ldr - adc) / (double) ldr_p)) * 100.0;
 			brightness_percent = adc_percent;
